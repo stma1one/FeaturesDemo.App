@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FeaturesDemo.Views.SendSmsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:FeaturesDemo.ViewModels"
+    Title="SendSmsPage"
+    x:DataType="viewModels:SendSmsPageViewModel">
+    <ScrollView>
+        <VerticalStackLayout Margin="15" Spacing="6">
+            <Entry
+                Keyboard="Telephone"
+                Placeholder="הכנס טלפון"
+                Text="{Binding PhoneNumber}" />
+            <Button Command="{Binding AddNumber}" Text="הכנס מספר" />
+            <CollectionView
+                EmptyView="אין נמענים"
+                ItemsSource="{Binding Recipients}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label
+                            FontSize="25"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding .}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Editor
+                x:Name="smsText"
+                FontSize="25"
+                HeightRequest="200"
+                Placeholder="הכנס מסר" />
+            <Button
+                Command="{Binding SendCommand}"
+                CommandParameter="{Binding Source={x:Reference smsText}, Path=Text}"
+                Text="שלח" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
