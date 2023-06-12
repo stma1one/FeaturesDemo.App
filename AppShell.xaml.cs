@@ -9,5 +9,6 @@ public partial class AppShell : Shell
 		InitializeComponent();
 		Routing.RegisterRoute("networkpage", typeof(NetworkPage));
         Routing.RegisterRoute("sendsmspage", typeof(SendSmsPage));
+		Routing.RegisterRoute("takepicture",typeof(TakePicturePage));	
     }
 }

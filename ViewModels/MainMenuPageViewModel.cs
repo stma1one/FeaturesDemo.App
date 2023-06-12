@@ -15,6 +15,8 @@ namespace FeaturesDemo.ViewModels
         public ICommand NavConnectivityCommand { get;private set; }    
         public ICommand NavSendSMSCommand { get;private set; }
 
+        public ICommand NavTakePictureCommand { get;private set; }
+
         public MainMenuPageViewModel() 
         {
             Title = "תפריט בדיקות";
@@ -25,6 +27,7 @@ namespace FeaturesDemo.ViewModels
                
             });
             NavSendSMSCommand = new Command(async () => { await Shell.Current.GoToAsync("sendsmspage"); });
+            NavTakePictureCommand = new Command(async () => { await Shell.Current.GoToAsync("takepicture"); });
         
         }  
     }

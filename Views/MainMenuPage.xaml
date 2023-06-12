@@ -13,6 +13,7 @@
             VerticalOptions="Center" />
         <Button Command="{Binding NavConnectivityCommand}" Text="מסך חיבוריות" />
         <Button Command="{Binding NavSendSMSCommand}" Text="שליחת סמס" />
+        <Button Command="{Binding NavTakePictureCommand}" Text="צילום"/>
 
     </VerticalStackLayout>
 </ContentPage>

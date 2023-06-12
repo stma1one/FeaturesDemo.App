@@ -12,10 +12,13 @@ namespace FeaturesDemo.ViewModels
         public string DisplayText { get => displayText; set { displayText = value; OnPropertyChanged(); } }
         public NetworkPageViewModel() 
         {
-            DisplayText = @$"כרגע מחוברים ב {Connectivity.Current.ConnectionProfiles.ToList()[0].ToString()} : 
+            if (Connectivity.Current.ConnectionProfiles != null)
+            {
+                DisplayText = @$"כרגע מחוברים ב {Connectivity.Current.ConnectionProfiles.ToList()[0]} : 
                             - כדי לבדוק מה קורה כשאין חיבוריות העבירו למצב טיסה";
-            //אירוע המופעל כאשר יש שינוי בחיבוריות האינטרנט
-            Connectivity.Current.ConnectivityChanged += AlertOnConnection;
+                //אירוע המופעל כאשר יש שינוי בחיבוריות האינטרנט
+                Connectivity.Current.ConnectivityChanged += AlertOnConnection;
+            }
         }
 
         private void AlertOnConnection(object sender, ConnectivityChangedEventArgs e)
@@ -28,7 +31,8 @@ namespace FeaturesDemo.ViewModels
             else
             {
                 Shell.Current.DisplayAlert("חזרה למסלול", "מזל!!!", "תודה");
-                DisplayText = @$"כרגע מחוברים ב {Connectivity.Current.ConnectionProfiles.ToList()[0].ToString()} : 
+                if(Connectivity.Current.ConnectionProfiles!=null)
+                DisplayText = @$"כרגע מחוברים ב {Connectivity.Current.ConnectionProfiles.ToList()[0]} : 
                             - כדי לבדוק מה קורה כשאין חיבוריות העבירו למצב טיסה";
             }
         }
